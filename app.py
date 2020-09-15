@@ -34,6 +34,7 @@ def root():
     return app.send_static_file('index.html')
 
 @app.route('/safeShare/upload', methods=['POST'])
+@limiter.limit("60 / hour")
 def upload():
     url = request.form.get('url')
     rp = request.form.get('randomPath')
@@ -62,6 +63,7 @@ def upload():
     return render_template('succ.html', tmp=tmp, perm=perm)
 
 @app.route('/safeShare/<pn>')
+@limiter.limit("300 / hour")
 def download(pn):
     sh = Share.query.filter_by(path=pn).first()
     if not sh: abort(404)

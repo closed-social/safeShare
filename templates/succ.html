@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+	<title>上传成功</title>
+</head>
+<body style="background-color: #001a37;color:#e8e8e8">
+	
+	<div style="max-width:700px;margin-top:25px;" class="container">
+	    <h2>上传成功</h2>
+	    <p><a href=".">返回</a></p>
+	    <p>现在你可以安全地分享下面的链接，不用担心从链接中泄露姓名。</p>
+	    <div class="form-group">
+	        <label for="tmp">临时下载地址(自动过期)</label>
+            <input class="form-control" type="text" id="tmp" readonly value="{{tmp}}">
+            <button class="btn btn-success" onclick="copy('tmp')">点击复制</button>
+            <br/>
+            <br/>
+            <label for="perm">永久下载地址</label>
+            <input class="form-control" type="text" id="perm" readonly value="{{perm}}">
+            <button class="btn btn-success" onclick="copy('perm')">点击复制</button>
+        </div>
+	</div>
+	
+</body>
+<script>
+    $('#perm').val(window.location.origin + '{{perm}}');
+    
+    function copy(x) {
+        let ele = $('#' + x);
+        ele.select();
+        document.execCommand("copy");
+        alert("已复制");
+    }
+</script>
+
+</html>

@@ -1,0 +1,49 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset='UTF-8'>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link href="https://cdn.bootcss.com/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+		<title>safeShare</title>
+	</head>
+
+	<body style="background-color: #001a37;color:#e8e8e8">
+		<div class="container" style="max-width:900px;" >
+
+			<div style="text-align:center; margin: 25px 0">
+			<div>
+				<h1 align='center'>safeShare</h1>
+		    </div>
+				<hr/>
+
+				<p>更安全地分享清华云盘链接，避免泄露真名</p>
+
+			</div>
+
+			<hr style="border-top: 1px solid white;"/>
+
+
+				<form action="upload" method="post" style="margin: 25px auto; padding:5px; max-width:700px;">
+					<div class="form-group">
+                        <input type="url" class="form-control" id="url" name="url" placeholder="分享页面链接 或 直接下载链接" required="required" pattern="https://cloud\.tsinghua\.edu\.cn/f/[0-9a-z]+/(\?dl=1)?" autocomplete="off">
+                        <label for="url">记得以https://开头，除dl外不要有额外的参数</label>
+ 
+                        <p>示例1：<br/>https://cloud.tsinghua.edu.cn/f/abcd123/</p>
+                        <p>示例2：<br/>https://cloud.tsinghua.edu.cn/f/abcd123/?dl=1</p>
+                    </div>
+					    <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="randomPath" name="randomPath">
+                            <label class="form-check-label" for="randomPath">加密路径</label>
+                        </div>
+					    <button id="send" type="submit" class="btn btn-primary mb-2">提交链接</button>
+				</form>
+				
+				<br/>
+				<p>默认用编号生成简单的路径。如果不希望文件被无关人士通过枚举编号看到，请勾选加密路径，将生成更长的随机路径。</p>
+				<br/>
+				<p>后台不会实际下载文件，仅通过head请求获取跳转地址。使用safeShare链接时仍是从清华云盘的服务器下载文件。</p>
+				<p>介绍：<a href="https://articles.closed.social/safeShare-09-15" target="_blank">safeShare —— 更安全地使用清华云盘</a>。</p>
+
+			
+	</body>
+</html>
